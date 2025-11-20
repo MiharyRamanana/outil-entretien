@@ -2,7 +2,7 @@ from openai import OpenAI
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval
 
-st.set_page_config(page_title="Streamlit Chat", page_icon=":speech_balloon:")
+st.set_page_config(page_title="Streamlit Chat")
 st.title("Chatbot")
 
 if "setup_complete" not in st.session_state:
@@ -76,7 +76,6 @@ if st.session_state.setup_complete and not st.session_state.feedback_shown and n
         """
         Start by introducing yourself.
         """,
-        icon=":speech_balloon:",
     )
 
     client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
