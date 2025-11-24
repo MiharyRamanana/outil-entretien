@@ -67,6 +67,7 @@ if not st.session_state.setup_complete:
         ("Amazon", "Meta", "Udemy", "365 Company", "Nestle", "LinkedIn", "Spotify")
     )
 
+    st.session_state.openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
     if st.button("Start Interview", on_click=complete_setup):
         st.write("Setup complete. Starting Interview...")
@@ -78,8 +79,8 @@ if st.session_state.setup_complete and not st.session_state.feedback_shown and n
         """,
     )
 
-    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
-
+    #client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+    client = OpenAI(api_key=st.session_state.openai_api_key)
     if "openai_model" not in st.session_state:
         st.session_state["openai_model"] = "gpt-4o"
 
