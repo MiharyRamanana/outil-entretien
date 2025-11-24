@@ -73,6 +73,12 @@ if not st.session_state.setup_complete:
         st.write("Setup complete. Starting Interview...")
 
 if st.session_state.setup_complete and not st.session_state.feedback_shown and not st.session_state.chat_complete:
+    if not st.session_state.openai_api_key:
+        st.info("Please add your OpenAI API key to continue.")
+        if st.button("Restart Interview", type="primary"):
+            streamlit_js_eval(js_expressions="parent.window.location.reload()")
+        st.stop()
+
     st.info(
         """
         Start by introducing yourself.
